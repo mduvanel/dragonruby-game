@@ -1,0 +1,6 @@
+devid=Duduche
+devtitle=Martin Duvanel
+gameid=StarGame
+gametitle=My Test StarGame
+version=0.1
+#icon=metadata/icon.png
