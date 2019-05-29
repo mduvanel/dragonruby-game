@@ -1,45 +1,4 @@
-module Direction
-  SOUTH = 0
-  WEST = 1
-  EAST = 2
-  NORTH = 3
-  NONE = 4
-end
-
-class MySprite
-  attr_accessor :width, :height, :file, :opacity, :saturation, :offset
-
-  def initialize(width, height, offset, file)
-    @width = width
-    @height = height
-    @offset = [offset, width, height]
-    @file = file
-    @opacity = 255
-    @saturation = [255, 255, 255]
-  end
-
-  def render(outputs, position, angle)
-    outputs.sprites << [position,
-                        @width,
-                        @height,
-                        @file,
-                        angle,
-                        @opacity,
-                        @saturation,
-                        @offset]
-  end
-end
-
-class BackgroundElement
-  attr_accessor :bounding_boxes, :sprites
-
-  def render(outputs, position, angle)
-    @sprites.each { |s|
-      s.render(outputs, position, angle)
-    }
-  end
-end
-
+$dragon.require('app/my_sprite.rb')
 
 class Character < MySprite
   attr_accessor :x, :y, :direction, :walk_counter
