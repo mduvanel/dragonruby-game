@@ -18,10 +18,10 @@ class Character < MySprite
   end
 
   def update_source_rect
-    @offset = [@walk_sprites[@walk_counter] * @width,
-               @direction * @height,
-               @width,
-               @height]
+    @file_offset = [@walk_sprites[@walk_counter] * @width,
+                    @direction * @height,
+                    @width,
+                    @height]
   end
 
   def reset_walk_sprite
@@ -62,6 +62,6 @@ class Character < MySprite
 
   def render_char(outputs)
     update_source_rect
-    render(outputs, [x, y], 0)
+    render(outputs, [@x, @y], 0)
   end
 end

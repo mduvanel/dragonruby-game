@@ -7,25 +7,32 @@ module Direction
 end
 
 class MySprite
-  attr_accessor :width, :height, :file, :opacity, :saturation, :offset
-
-  def initialize(width, height, offset, file)
+  def initialize(width, height, file_offset, file, x_offset = 0, y_offset = 0)
     @width = width
     @height = height
-    @offset = [offset, width, height]
+    @file_offset = [file_offset, width, height]
     @file = file
     @opacity = 255
     @saturation = [255, 255, 255]
+    @x_offset = x_offset
+    @y_offset = y_offset
   end
 
   def render(outputs, position, angle)
-    outputs.sprites << [position,
+    zipped = position.zip([@x_offset, @y_offset])
+    new_offset = position.zip([@x_offset, @y_offset]).map{ |elem|
+      elem.inject(0, :+)
+    }
+    #puts 'Rendering sprite ' + @file.to_s
+    #puts ' position = ' + position.to_s
+    #puts ' new_offset = ' + new_offset.to_s
+    outputs.sprites << [new_offset,
                         @width,
                         @height,
                         @file,
                         angle,
                         @opacity,
                         @saturation,
-                        @offset]
+                        @file_offset]
   end
 end

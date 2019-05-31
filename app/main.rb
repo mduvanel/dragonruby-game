@@ -1,10 +1,10 @@
-#$dragon.require 'app/background.rb'
+$dragon.require 'app/background.rb'
 $dragon.require 'app/character.rb'
 
 $character = Character.new('sprites/old_man.png', 640, 360)
-$character2 = Character.new('sprites/old_man.png', 800, 500)
+$house = House.new([300, 300])
 
 def tick args
+  $house.tick(args.outputs)
   $character.tick(args.inputs, args.outputs)
-  $character2.tick(args.inputs, args.outputs)
 end
