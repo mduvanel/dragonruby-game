@@ -10,6 +10,7 @@ class Character < MySprite
     @direction = Direction::SOUTH
     @walk_sprites = [0, 0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 2, 1, 1, 1]
     @walk_counter = @walk_sprites.size - 1
+    @walk_speed = 1.5
   end
 
   def tick(inputs)
@@ -36,15 +37,33 @@ class Character < MySprite
   end
 
   def process_inputs(inputs)
+    key_down = false
+
     if inputs.keyboard.key_held.left
       direction = Direction::WEST
-    elsif inputs.keyboard.key_held.right
+      @x -= @walk_speed
+      key_down = true
+    end
+
+    if inputs.keyboard.key_held.right
       direction = Direction::EAST
-    elsif inputs.keyboard.key_held.up
+      @x += @walk_speed
+      key_down = true
+    end
+
+    if inputs.keyboard.key_held.up
       direction = Direction::NORTH
-    elsif inputs.keyboard.key_held.down
+      @y += @walk_speed
+      key_down = true
+    end
+
+    if inputs.keyboard.key_held.down
       direction = Direction::SOUTH
-    else
+      @y -= @walk_speed
+      key_down = true
+    end
+
+    if !key_down
       direction = Direction::NONE
       reset_walk_sprite
       return
