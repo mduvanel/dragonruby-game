@@ -12,9 +12,8 @@ class Character < MySprite
     @walk_counter = @walk_sprites.size - 1
   end
 
-  def tick(inputs, outputs)
+  def tick(inputs)
     process_inputs(inputs)
-    render_char(outputs)
   end
 
   def update_source_rect
@@ -60,8 +59,8 @@ class Character < MySprite
     @direction = direction
   end
 
-  def render_char(outputs)
+  def render(outputs)
     update_source_rect
-    render(outputs, [@x, @y], 0)
+    super(outputs, [@x, @y], 0)
   end
 end

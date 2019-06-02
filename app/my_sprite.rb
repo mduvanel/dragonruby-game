@@ -20,7 +20,7 @@ class MySprite
 
   def render(outputs, position, angle)
     zipped = position.zip([@x_offset, @y_offset])
-    new_offset = position.zip([@x_offset, @y_offset]).map{ |elem|
+    new_offset = zipped.map{ |elem|
       elem.inject(0, :+)
     }
     #puts 'Rendering sprite ' + @file.to_s
