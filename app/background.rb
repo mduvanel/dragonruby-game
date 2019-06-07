@@ -1,4 +1,9 @@
+$dragon.require('app/my_sprite.rb')
+
 class BackgroundElement
+
+  include BoundingBox
+
   def initialize(offset)
     @offset = offset
   end
@@ -20,6 +25,7 @@ class House < BackgroundElement
       MySprite.new(64, 128, [128, 0], 'sprites/TileA3.png'),
       MySprite.new(32, 64, [224, 128], 'sprites/TileC.png', 16, 0),
     ]
+    @bounding_box = [offset[0], offset[1], 64, 64]
     super
   end
 end

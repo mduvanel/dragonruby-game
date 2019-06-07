@@ -6,7 +6,22 @@ module Direction
   NONE = 4
 end
 
+module BoundingBox
+  def set_bounding_box(x, y, width, height)
+    @bounding_box = [x, y, width, height]
+  end
+
+  def bounding_box
+    return @bounding_box
+  end
+
+  def collides(bounding_box)
+    return bounding_box().intersects_rect?(bounding_box)
+  end
+end
+
 class MySprite
+
   def initialize(width, height, file_offset, file, x_offset = 0, y_offset = 0)
     @width = width
     @height = height

@@ -1,7 +1,8 @@
 $dragon.require('app/my_sprite.rb')
 
 class Character < MySprite
-  attr_accessor :x, :y, :direction, :walk_counter
+
+  include BoundingBox
 
   def initialize(file, x, y)
     super(32, 48, [0, 0], file)
@@ -15,6 +16,14 @@ class Character < MySprite
 
   def tick(inputs)
     process_inputs(inputs)
+  end
+
+  def position
+    return [@x, @y]
+  end
+
+  def bounding_box
+    return [@x + 4, @y, @width - 8, 16]
   end
 
   def update_source_rect
@@ -38,44 +47,51 @@ class Character < MySprite
 
   def process_inputs(inputs)
     key_down = false
+    x = 0
+    y = 0
 
     if inputs.keyboard.key_held.left
       direction = Direction::WEST
-      @x -= @walk_speed
+      x -= @walk_speed
       key_down = true
     end
 
     if inputs.keyboard.key_held.right
       direction = Direction::EAST
-      @x += @walk_speed
+      x += @walk_speed
       key_down = true
     end
 
     if inputs.keyboard.key_held.up
       direction = Direction::NORTH
-      @y += @walk_speed
+      y += @walk_speed
       key_down = true
     end
 
     if inputs.keyboard.key_held.down
       direction = Direction::SOUTH
-      @y -= @walk_speed
+      y -= @walk_speed
       key_down = true
     end
 
     if !key_down
       direction = Direction::NONE
       reset_walk_sprite
-      return
-    end
-
-    if direction == @direction
-      increment_walk_sprite
     else
-      first_walk_sprite
+      if direction == @direction
+        increment_walk_sprite
+      else
+        first_walk_sprite
+      end
+      @direction = direction
     end
 
-    @direction = direction
+    return [x, y]
+  end
+
+  def move(offset)
+    @x += offset[0]
+    @y += offset[1]
   end
 
   def render(outputs)
