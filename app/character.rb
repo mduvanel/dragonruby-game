@@ -94,6 +94,10 @@ class Character < MySprite
     @y += offset[1]
   end
 
+  def z_order()
+    return @y
+  end
+
   def render(outputs)
     update_source_rect
     super(outputs, [@x, @y], 0)

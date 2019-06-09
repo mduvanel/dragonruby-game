@@ -14,6 +14,10 @@ class BackgroundElement
     }
   end
 
+  def z_order()
+    return @bounding_box[1]
+  end
+
   def tick(outputs)
     render(outputs)
   end

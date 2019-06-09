@@ -15,10 +15,10 @@ class Scene
 
   def render(outputs, x, y, width, height)
     # for now render everything, even if out of screen
-    @background_elements.each { |element|
-      element.render(outputs)
-    }
-    @character.render(outputs)
+    all_items = Array.new(@background_elements.size()) { |i| @background_elements[i] }
+    all_items << @character
+    all_items.sort! { |a, b| b.z_order() <=> a.z_order() }
+    all_items.each { |element| element.render(outputs) }
   end
 
   def can_move(bounding_box)
