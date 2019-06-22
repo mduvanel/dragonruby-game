@@ -14,6 +14,7 @@ class Scene
   end
 
   def render(outputs, x, y, width, height)
+    outputs.solids << [0, 0, 1280, 720, 0, 0, 0]
     # for now render everything, even if out of screen
     all_items = Array.new(@background_elements.size()) { |i| @background_elements[i] }
     all_items << @character

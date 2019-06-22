@@ -33,3 +33,18 @@ class House < BackgroundElement
     super
   end
 end
+
+class WoodenFloor < BackgroundElement
+  def initialize(offset, x, y)
+    puts "Creating WoodenFloor..."
+    @sprites = Array.new
+    for i in 0..x - 1
+      for j in 0..y - 1
+        @sprites << MySprite.new(32, 32, [0, 128], 'sprites/TileA5.png', 32 * i, 32 * j)
+      end
+    end
+    # Z order is bounding_box[1]
+    @bounding_box = [0, 20000, 0, 0]
+    super(offset)
+  end
+end
