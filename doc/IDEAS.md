@@ -1,5 +1,5 @@
 # Concepts
-- escape game depuis une pièce, Zelda - like sans combat orienté énigme
-- scénario cli-fi
-- héros féminin
-- progression liée à la nourriture, la capacité à en trouver ou à en produire en combinant des objets
+- escape game from a room, Zelda-like without combat, puzzle-oriented
+- cli-fi scenario
+- feminine hero character
+- food-based progression, capacity to find/produce food by combining objects
