@@ -4,4 +4,5 @@ This README is intended for future me mostly, to make me document what I do regu
 
 ## Links
 
-[General ideas about this game](doc/IDEAS.md)
+- [General ideas about this game](doc/IDEAS.md)
+- [Tricks regarding images](doc/img/TRICKS.md)
