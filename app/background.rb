@@ -36,7 +36,6 @@ end
 
 class WoodenFloor < BackgroundElement
   def initialize(offset, x, y)
-    puts "Creating WoodenFloor..."
     @sprites = Array.new
     for i in 0..x - 1
       for j in 0..y - 1
