@@ -1,8 +1,11 @@
+$dragon.require('app/health_bar.rb')
+
 class Scene
   def initialize(width, height)
     @width = width
     @height = height
     @background_elements = Array.new
+    @health_bar = HealthBar.new(width - 20, 50, 10)
   end
 
   def add_background_element(element)
@@ -47,5 +50,7 @@ class Scene
     move_if_possible([0, offset[1]])
 
     render(outputs, 0, 0, 1280, 720)
+
+    @health_bar.tick(outputs)
   end
 end
